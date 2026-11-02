@@ -278,6 +278,95 @@ h1 span {
   letter-spacing: 0.18em;
 }
 
+.trailer-section {
+  display: flex;
+  justify-content: center;
+  padding: 64px 0 4px;
+}
+
+.trailer-card {
+  display: grid;
+  width: min(480px, 100%);
+  gap: 20px;
+}
+
+.trailer-art {
+  position: relative;
+  display: block;
+  isolation: isolate;
+  border: 1px solid rgb(255 255 255 / 14%);
+  border-radius: 5px;
+  background: #241732;
+}
+
+.trailer-art::before {
+  position: absolute;
+  z-index: -1;
+  inset: 12px;
+  border-radius: inherit;
+  background:
+    radial-gradient(ellipse at 18% 88%, var(--pink), transparent 52%),
+    radial-gradient(ellipse at 82% 86%, var(--orange), transparent 48%),
+    radial-gradient(ellipse at 52% 2%, var(--violet), transparent 55%);
+  content: "";
+  filter: blur(32px);
+  opacity: 0.85;
+}
+
+.trailer-art img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: inherit;
+  object-fit: cover;
+}
+
+.trailer-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  width: 64px;
+  height: 64px;
+  transform: translate(-50%, -50%);
+  place-items: center;
+  padding-left: 4px;
+  border: 1px solid rgb(255 255 255 / 65%);
+  border-radius: 50%;
+  background: rgb(23 14 45 / 72%);
+  color: white;
+  font-size: 19px;
+  transition: background 180ms ease, transform 180ms ease;
+}
+
+.trailer-card:hover .trailer-play,
+.trailer-card:focus-visible .trailer-play {
+  transform: translate(-50%, -50%) scale(1.08);
+  background: var(--pink);
+}
+
+.trailer-caption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.trailer-caption .eyebrow {
+  margin: 0;
+}
+
+.trailer-link-label {
+  color: #e8dce9;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.trailer-link-label span {
+  padding-left: 5px;
+  color: var(--pink);
+}
+
 .countdown-section {
   padding: 83px 24px 58px;
   text-align: center;

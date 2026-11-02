@@ -49,10 +49,10 @@
       <div class="section-heading">
         <p class="eyebrow"><span class="eyebrow-line"></span> MARK YOUR CALENDAR</p>
         <h2 id="countdown-title">The countdown is on<span>.</span></h2>
-        <p class="release-date">Grand Theft Auto VI <span class="date-divider">/</span> <time datetime="2026-11-19">November 19, 2026</time></p>
+        <p class="release-date"><span id="countdown-event">Preload begins</span> <span class="date-divider">/</span> <time id="countdown-date" datetime="2026-11-12">November 12, 2026</time></p>
       </div>
 
-      <div class="timer" role="timer" aria-label="Time remaining until November 19, 2026">
+      <div class="timer" id="countdown-timer" role="timer" aria-label="Time remaining until preload begins on November 12, 2026">
         <div class="time-unit"><span class="time-value" id="days">00</span><span class="time-label">DAYS</span></div>
         <span class="time-separator" aria-hidden="true">:</span>
         <div class="time-unit"><span class="time-value" id="hours">00</span><span class="time-label">HOURS</span></div>
@@ -62,13 +62,29 @@
         <div class="time-unit"><span class="time-value" id="seconds">00</span><span class="time-label">SECONDS</span></div>
       </div>
 
-      <p class="countdown-status" id="countdown-status" aria-live="polite">Until the streets are yours.</p>
+      <p class="countdown-status" id="countdown-status" aria-live="polite">
+        <span id="default-status">Until the streets are yours.</span>
+        <span id="post-preload-status" hidden><del>go download u dumbass</del> <span id="release-status">release is already around the corner</span></span>
+      </p>
 
       <div class="bottom-note">
         <span class="note-icon" aria-hidden="true">✦</span>
         <p>Pack light. Dream big. <span>Vice City is waiting.</span></p>
         <span class="note-icon" aria-hidden="true">✦</span>
       </div>
+    </section>
+
+    <section class="trailer-section" aria-label="Latest GTA VI trailer">
+      <a class="trailer-card" href="https://youtu.be/rz1B4B2yBZY?si=Cu14-hfDJAEMt7nj" target="_blank" rel="noopener noreferrer">
+        <span class="trailer-art">
+          <img src="https://img.youtube.com/vi/rz1B4B2yBZY/maxresdefault.jpg" alt="Watch the latest Grand Theft Auto VI trailer" loading="lazy">
+          <span class="trailer-play" aria-hidden="true">▶</span>
+        </span>
+        <span class="trailer-caption">
+          <span class="eyebrow"><span class="eyebrow-line"></span> THE LATEST TRAILER</span>
+          <span class="trailer-link-label">Watch on YouTube <span aria-hidden="true">↗</span></span>
+        </span>
+      </a>
     </section>
 
     <footer class="footer">
