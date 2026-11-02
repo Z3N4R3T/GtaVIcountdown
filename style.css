@@ -286,8 +286,8 @@ h1 span {
 
 .trailer-card {
   display: grid;
-  width: min(480px, 100%);
-  gap: 20px;
+  width: min(320px, 100%);
+  gap: 14px;
 }
 
 .trailer-art {
