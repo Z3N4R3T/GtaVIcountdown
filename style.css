@@ -104,7 +104,12 @@ a {
   isolation: isolate;
   border: 1px solid rgb(255 255 255 / 9%);
   border-radius: 5px;
+  box-shadow:
+    0 0 34px rgb(255 106 156 / 18%),
+    0 0 82px rgb(255 178 100 / 12%);
   background:
+    radial-gradient(ellipse 32% 48% at 76% 57%, rgb(255 143 154 / 30%), transparent 72%),
+    radial-gradient(ellipse 24% 40% at 83% 70%, rgb(255 178 100 / 18%), transparent 76%),
     linear-gradient(90deg, rgb(29 15 47 / 86%) 0%, rgb(39 21 59 / 58%) 48%, rgb(39 21 59 / 8%) 100%),
     linear-gradient(0deg, #261835 0%, transparent 36%),
     linear-gradient(155deg, #4a2d68 0%, #b34a79 42%, #f28a77 68%, #ffc17f 100%);
@@ -516,6 +521,8 @@ h2 span {
     min-height: 540px;
     align-items: start;
     background:
+      radial-gradient(ellipse 48% 42% at 76% 67%, rgb(255 143 154 / 30%), transparent 72%),
+      radial-gradient(ellipse 36% 38% at 83% 76%, rgb(255 178 100 / 18%), transparent 76%),
       linear-gradient(90deg, rgb(29 15 47 / 79%), rgb(39 21 59 / 20%)),
       linear-gradient(0deg, #261835 0%, transparent 45%),
       linear-gradient(155deg, #4a2d68 0%, #b34a79 42%, #f28a77 68%, #ffc17f 100%);
