@@ -18,6 +18,8 @@ html {
 }
 
 body {
+  display: flex;
+  flex-direction: column;
   min-height: 100vh;
   margin: 0;
   background: var(--night);
@@ -32,6 +34,9 @@ a {
 }
 
 .page-shell {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
   width: min(100% - 64px, 1440px);
   margin: 0 auto;
 }
@@ -98,7 +103,9 @@ a {
 .hero {
   position: relative;
   display: grid;
-  min-height: 560px;
+  --hero-compact-height: 560px;
+  height: clamp(620px, 82vh, 820px);
+  min-height: 0;
   overflow: hidden;
   align-items: center;
   isolation: isolate;
@@ -284,15 +291,31 @@ h1 span {
 }
 
 .trailer-section {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 320px));
   justify-content: center;
+  gap: 30px;
   padding: 64px 0 4px;
 }
 
 .trailer-card {
   display: grid;
-  width: min(320px, 100%);
+  width: 100%;
   gap: 14px;
+}
+
+.trailer-section.is-stacking {
+  position: relative;
+  display: block;
+}
+
+.trailer-section.is-stacking .trailer-card {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: min(420px, 100%);
+  transform: translate3d(-50%, var(--stack-y, 0px), 0);
+  will-change: transform;
 }
 
 .trailer-art {
@@ -368,6 +391,22 @@ h1 span {
 }
 
 .trailer-link-label span {
+  padding-left: 5px;
+  color: var(--pink);
+}
+
+.trailer-more {
+  display: block;
+  width: fit-content;
+  margin: 28px auto 0;
+  padding-bottom: 7px;
+  border-bottom: 1px solid rgb(255 255 255 / 35%);
+  color: #e8dce9;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.trailer-more span {
   padding-left: 5px;
   color: var(--pink);
 }
@@ -482,6 +521,7 @@ h2 span {
 .footer {
   display: flex;
   min-height: 55px;
+  margin-top: auto;
   align-items: center;
   justify-content: space-between;
   border-top: 1px solid rgb(255 255 255 / 8%);
@@ -498,7 +538,8 @@ h2 span {
 
 @media (min-width: 1500px) {
   .hero {
-    min-height: 620px;
+    --hero-compact-height: 620px;
+    height: clamp(680px, 82vh, 900px);
   }
 }
 
@@ -518,7 +559,9 @@ h2 span {
   }
 
   .hero {
-    min-height: 540px;
+    --hero-compact-height: 540px;
+    height: clamp(580px, 76vh, 700px);
+    min-height: 0;
     align-items: start;
     background:
       radial-gradient(ellipse 48% 42% at 76% 67%, rgb(255 143 154 / 30%), transparent 72%),
@@ -600,7 +643,9 @@ h2 span {
   }
 
   .hero {
-    min-height: 500px;
+    --hero-compact-height: 500px;
+    height: clamp(540px, 76vh, 640px);
+    min-height: 0;
   }
 
   .hero-content {
@@ -659,5 +704,9 @@ h2 span {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  .trailer-section.is-stacking .trailer-card {
+    will-change: auto;
   }
 }

@@ -64,3 +64,72 @@ function updateCountdown() {
 
 updateCountdown();
 window.setInterval(updateCountdown, 1000);
+
+const trailerSection = document.querySelector(".trailer-section");
+const trailerCards = [...trailerSection.querySelectorAll(".trailer-card")];
+const hero = document.querySelector(".hero");
+const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+let heroExpandedHeight;
+
+trailerSection.classList.add("is-stacking");
+
+function measureHeroHeight() {
+  hero.style.removeProperty("height");
+  heroExpandedHeight = hero.getBoundingClientRect().height;
+}
+
+function updateHeroHeight() {
+  const compactHeight = Number.parseFloat(
+    window.getComputedStyle(hero).getPropertyValue("--hero-compact-height")
+  );
+  const scrollRange = Math.max(window.innerHeight * 0.35, 300);
+  const progress = reducedMotion.matches
+    ? 0
+    : Math.min(1, Math.max(0, window.scrollY / scrollRange));
+  const height = heroExpandedHeight - (heroExpandedHeight - compactHeight) * progress;
+
+  hero.style.height = `${height}px`;
+}
+
+function updateTrailerStack() {
+  const sectionTop = trailerSection.getBoundingClientRect().top;
+  const scrollRange = Math.max(window.innerHeight * 0.9, 600);
+  const scrollProgress = Math.min(
+    1,
+    Math.max(0, (window.innerHeight - sectionTop) / scrollRange)
+  );
+  const progress = reducedMotion.matches || trailerSection.contains(document.activeElement)
+    ? 1
+    : scrollProgress;
+  const cardWidth = trailerCards[0].getBoundingClientRect().width;
+  const cardHeight = cardWidth * 9 / 16 + 40;
+  const spreadStep = cardHeight + 20;
+
+  trailerSection.style.minHeight = `${spreadStep * (trailerCards.length - 1) + cardHeight}px`;
+
+  trailerCards.forEach((card, index) => {
+    const collapsedOffset = index * 8;
+    const expandedOffset = index * spreadStep;
+    card.style.setProperty(
+      "--stack-y",
+      `${collapsedOffset + (expandedOffset - collapsedOffset) * progress}px`
+    );
+    card.style.zIndex = String(trailerCards.length - index);
+  });
+}
+
+function updateScrollEffects() {
+  updateHeroHeight();
+  updateTrailerStack();
+}
+
+window.addEventListener("scroll", updateScrollEffects, { passive: true });
+window.addEventListener("resize", () => {
+  measureHeroHeight();
+  updateScrollEffects();
+});
+trailerSection.addEventListener("focusin", updateScrollEffects);
+trailerSection.addEventListener("focusout", updateScrollEffects);
+reducedMotion.addEventListener("change", updateScrollEffects);
+measureHeroHeight();
+updateScrollEffects();
