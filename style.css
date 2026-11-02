@@ -358,13 +358,20 @@ h1 span {
   height: 64px;
   transform: translate(-50%, -50%);
   place-items: center;
-  padding-left: 4px;
   border: 1px solid rgb(255 255 255 / 65%);
   border-radius: 50%;
   background: rgb(23 14 45 / 72%);
-  color: white;
-  font-size: 19px;
   transition: background 180ms ease, transform 180ms ease;
+}
+
+.trailer-play::before {
+  width: 0;
+  height: 0;
+  margin-left: 4px;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-left: 12px solid white;
+  content: "";
 }
 
 .trailer-card:hover .trailer-play,
