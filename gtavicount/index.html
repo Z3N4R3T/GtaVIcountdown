@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#170e2d">
+  <meta name="description" content="A neon-soaked countdown to the launch of Grand Theft Auto VI.">
+  <title>GTA VI Countdown — Vice City is calling</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <main class="page-shell">
+    <header class="topbar">
+      <a class="wordmark" href="#" aria-label="Vice City countdown home">
+        <span class="wordmark-icon" aria-hidden="true">VI</span>
+        <span>VICE CITY<span class="wordmark-subtitle">COUNTDOWN</span></span>
+      </a>
+      <a class="release-link" href="#countdown">
+        <span class="live-dot" aria-hidden="true"></span>
+        <span>THE WAIT IS ALMOST OVER</span>
+      </a>
+    </header>
+
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="sunset" aria-hidden="true"></div>
+      <div class="palm palm-left" aria-hidden="true"></div>
+      <div class="palm palm-right" aria-hidden="true"></div>
+      <div class="hero-content">
+        <p class="eyebrow"><span class="eyebrow-line"></span> A NEW ERA IS ON THE HORIZON</p>
+        <h1 id="hero-title">WELCOME TO<br><span>VICE CITY</span></h1>
+        <p class="hero-copy">The lights are brighter. The stakes are higher.<br class="desktop-break"> Your next great escape is just around the corner.</p>
+        <a class="countdown-jump" href="#countdown">
+          COUNTING DOWN TO THE BIG DAY
+          <span aria-hidden="true">↓</span>
+        </a>
+      </div>
+      <div class="horizon" aria-hidden="true"></div>
+      <div class="hero-caption" aria-hidden="true">
+        <span>LEONIDA STATE</span>
+        <span>25° 46′ N &nbsp; 80° 12′ W</span>
+      </div>
+    </section>
+
+    <section class="countdown-section" id="countdown" aria-labelledby="countdown-title">
+      <div class="section-heading">
+        <p class="eyebrow"><span class="eyebrow-line"></span> MARK YOUR CALENDAR</p>
+        <h2 id="countdown-title">The countdown is on<span>.</span></h2>
+        <p class="release-date">Grand Theft Auto VI <span class="date-divider">/</span> <time datetime="2026-11-19">November 19, 2026</time></p>
+      </div>
+
+      <div class="timer" role="timer" aria-label="Time remaining until November 19, 2026">
+        <div class="time-unit"><span class="time-value" id="days">00</span><span class="time-label">DAYS</span></div>
+        <span class="time-separator" aria-hidden="true">:</span>
+        <div class="time-unit"><span class="time-value" id="hours">00</span><span class="time-label">HOURS</span></div>
+        <span class="time-separator" aria-hidden="true">:</span>
+        <div class="time-unit"><span class="time-value" id="minutes">00</span><span class="time-label">MINUTES</span></div>
+        <span class="time-separator" aria-hidden="true">:</span>
+        <div class="time-unit"><span class="time-value" id="seconds">00</span><span class="time-label">SECONDS</span></div>
+      </div>
+
+      <p class="countdown-status" id="countdown-status" aria-live="polite">Until the streets are yours.</p>
+
+      <div class="bottom-note">
+        <span class="note-icon" aria-hidden="true">✦</span>
+        <p>Pack light. Dream big. <span>Vice City is waiting.</span></p>
+        <span class="note-icon" aria-hidden="true">✦</span>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <span>MADE FOR THE WAIT</span>
+      <span class="footer-disclaimer">Fan-made countdown. Release date subject to change.</span>
+    </footer>
+  </main>
+</body>
+</html>
