@@ -70,8 +70,13 @@ const trailerCards = [...trailerSection.querySelectorAll(".trailer-card")];
 const hero = document.querySelector(".hero");
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 let heroExpandedHeight;
+let scrollEffectsFrame;
 
 trailerSection.classList.add("is-stacking");
+
+function easeInOut(progress) {
+  return progress * progress * (3 - 2 * progress);
+}
 
 function measureHeroHeight() {
   hero.style.removeProperty("height");
@@ -85,7 +90,7 @@ function updateHeroHeight() {
   const scrollRange = Math.max(window.innerHeight * 0.35, 300);
   const progress = reducedMotion.matches
     ? 0
-    : Math.min(1, Math.max(0, window.scrollY / scrollRange));
+    : easeInOut(Math.min(1, Math.max(0, window.scrollY / scrollRange)));
   const height = heroExpandedHeight - (heroExpandedHeight - compactHeight) * progress;
 
   hero.style.height = `${height}px`;
@@ -94,10 +99,10 @@ function updateHeroHeight() {
 function updateTrailerStack() {
   const sectionTop = trailerSection.getBoundingClientRect().top;
   const scrollRange = Math.max(window.innerHeight * 0.9, 600);
-  const scrollProgress = Math.min(
+  const scrollProgress = easeInOut(Math.min(
     1,
     Math.max(0, (window.innerHeight - sectionTop) / scrollRange)
-  );
+  ));
   const progress = reducedMotion.matches || trailerSection.contains(document.activeElement)
     ? 1
     : scrollProgress;
@@ -118,18 +123,25 @@ function updateTrailerStack() {
   });
 }
 
-function updateScrollEffects() {
-  updateHeroHeight();
-  updateTrailerStack();
+function scheduleScrollEffects() {
+  if (scrollEffectsFrame !== undefined) {
+    return;
+  }
+
+  scrollEffectsFrame = window.requestAnimationFrame(() => {
+    scrollEffectsFrame = undefined;
+    updateHeroHeight();
+    updateTrailerStack();
+  });
 }
 
-window.addEventListener("scroll", updateScrollEffects, { passive: true });
+window.addEventListener("scroll", scheduleScrollEffects, { passive: true });
 window.addEventListener("resize", () => {
   measureHeroHeight();
-  updateScrollEffects();
+  scheduleScrollEffects();
 });
-trailerSection.addEventListener("focusin", updateScrollEffects);
-trailerSection.addEventListener("focusout", updateScrollEffects);
-reducedMotion.addEventListener("change", updateScrollEffects);
+trailerSection.addEventListener("focusin", scheduleScrollEffects);
+trailerSection.addEventListener("focusout", scheduleScrollEffects);
+reducedMotion.addEventListener("change", scheduleScrollEffects);
 measureHeroHeight();
-updateScrollEffects();
+scheduleScrollEffects();
