@@ -1,4 +1,4 @@
-const preloadDate = new Date(2026, 10, 12);
+const preloadDate = new Date(2026, 10, 10);
 const releaseDate = new Date(2026, 10, 19);
 const countdownEvent = document.querySelector("#countdown-event");
 const countdownDate = document.querySelector("#countdown-date");
@@ -27,11 +27,11 @@ function updateCountdown() {
     activePhase = phase;
     const isPreload = phase === "preload";
     countdownEvent.textContent = isPreload ? "Preload begins" : "Release";
-    countdownDate.dateTime = isPreload ? "2026-11-12" : "2026-11-19";
-    countdownDate.textContent = isPreload ? "November 12, 2026" : "November 19, 2026";
+    countdownDate.dateTime = isPreload ? "2026-11-10" : "2026-11-19";
+    countdownDate.textContent = isPreload ? "November 10, 2026" : "November 19, 2026";
     countdownTimer.setAttribute(
       "aria-label",
-      `Time remaining until ${isPreload ? "preload begins on November 12" : "release on November 19"}, 2026`
+      `Time remaining until ${isPreload ? "preload begins on November 10" : "release on November 19"}, 2026`
     );
     defaultStatus.hidden = phase !== "preload";
     postPreloadStatus.hidden = phase === "preload";
