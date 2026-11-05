@@ -65,6 +65,47 @@ function updateCountdown() {
 updateCountdown();
 window.setInterval(updateCountdown, 1000);
 
+const downloadSpeed = document.querySelector("#download-speed");
+const downloadTime = document.querySelector("#download-time");
+const gameSizeGigabytes = 210;
+
+function formatDownloadTime(totalSeconds) {
+  const units = [
+    ["day", 86400],
+    ["hour", 3600],
+    ["minute", 60],
+    ["second", 1],
+  ];
+  let remaining = totalSeconds;
+  const parts = [];
+
+  units.forEach(([unit, seconds]) => {
+    const count = Math.floor(remaining / seconds);
+
+    if (count > 0) {
+      parts.push(`${count} ${unit}${count === 1 ? "" : "s"}`);
+      remaining %= seconds;
+    }
+  });
+
+  return parts.slice(0, 2).join(", ");
+}
+
+function updateDownloadTime() {
+  const speedMbps = downloadSpeed.valueAsNumber;
+
+  if (!Number.isFinite(speedMbps) || speedMbps < 0.1) {
+    downloadTime.textContent = "Enter a speed of at least 0.1 Mbps.";
+    return;
+  }
+
+  const totalSeconds = Math.ceil((gameSizeGigabytes * 8000) / speedMbps);
+  downloadTime.textContent = formatDownloadTime(totalSeconds);
+}
+
+downloadSpeed.addEventListener("input", updateDownloadTime);
+updateDownloadTime();
+
 const trailerSection = document.querySelector(".trailer-section");
 const trailerCards = [...trailerSection.querySelectorAll(".trailer-card")];
 const hero = document.querySelector(".hero");

@@ -74,6 +74,31 @@
       </div>
     </section>
 
+    <section class="download-section" aria-labelledby="download-title">
+      <div class="section-heading">
+        <p class="eyebrow"><span class="eyebrow-line"></span> PLAN YOUR PRELOAD</p>
+        <h2 id="download-title">How long to download<span>?</span></h2>
+        <p class="release-date">Estimate the time for a 210 GB download.</p>
+      </div>
+
+      <div class="download-calculator">
+        <div class="download-input">
+          <label for="download-speed">Your download speed</label>
+          <div class="speed-field">
+            <input id="download-speed" name="download-speed" type="number" min="0.1" step="any" value="100" inputmode="decimal">
+            <span aria-hidden="true">Mbps</span>
+          </div>
+          <p class="download-hint">Use the download speed from a speed test, not your Wi-Fi link speed.</p>
+        </div>
+
+        <div class="download-result">
+          <span class="time-label">ESTIMATED DOWNLOAD TIME</span>
+          <output id="download-time" for="download-speed" aria-live="polite" aria-atomic="true"></output>
+        </div>
+      </div>
+      <p class="download-disclaimer">Estimate assumes a steady full-speed connection and 1 GB = 1,000 MB. Actual download time may vary.</p>
+    </section>
+
     <section class="trailer-section" aria-label="Grand Theft Auto VI trailers">
       <a class="trailer-card" href="https://youtu.be/QdBZY2fkU-0" target="_blank" rel="noopener noreferrer">
         <span class="trailer-art">
